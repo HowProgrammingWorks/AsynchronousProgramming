@@ -1,42 +1,37 @@
-// See new order
+// Sequentian calls and sequentian execution
 
-readConfig('myConfig', () => {});
+readConfig('myConfig', (err, data) => {});
 selectFromDb('select * from cities', () => {});
 getHttpPage('http://kpi.ua', () => {});
 readFile('README.md', () => {});
 
-// Emulate Asynchronous calls
-
-function wrapAsync(callback) {
-  setTimeout(callback, Math.floor((Math.random() * 1000)));
-}
-
-// Asynchronous functions
+// Pseudo-Asynchronous Functions
+// having just callbacks but working synchronously
 
 function readConfig(name, callback) {
-  wrapAsync(() => {
+  setTimeout(() => {
     console.log('(1) config loaded');
     callback({ name });
-  });
+  }, 1000);
 }
 
 function selectFromDb(query, callback) {
-  wrapAsync(() => {
+  setTimeout(() => {
     console.log('(2) SQL query executed');
     callback([ { name: 'Kiev' } , { name: 'Roma' } ]);
-  });
+  }, 1000);
 }
 
 function getHttpPage(url, callback) {
-  wrapAsync(() => {
+  setTimeout(() => {
     console.log('(3) Page retrieved');
     callback('<html>Some archaic web here</html>');
-  });
+  }, 1000);
 }
 
 function readFile(path, callback) {
-  wrapAsync(() => {
+  setTimeout(() => {
     console.log('(4) Readme file loaded');
     callback('file content');
-  });
+  }, 1000);
 }
