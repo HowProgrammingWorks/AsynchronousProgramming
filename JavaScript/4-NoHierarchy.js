@@ -1,3 +1,5 @@
+'use strict';
+
 // Back to order, callback hierarchy
 
 let data = {};

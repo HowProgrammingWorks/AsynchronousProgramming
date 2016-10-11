@@ -1,3 +1,5 @@
+'use strict';
+
 // Sequentian calls and sequentian execution
 
 readConfig('myConfig', (err, data) => {});

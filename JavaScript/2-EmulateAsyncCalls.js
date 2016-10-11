@@ -1,6 +1,8 @@
-// See new order
+'use strict';
 
-var count = 0;
+// Run and see random order
+
+let count = 0;
 
 readConfig('myConfig', callbackCheck);
 selectFromDb('select * from cities', callbackCheck);
