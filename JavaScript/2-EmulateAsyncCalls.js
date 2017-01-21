@@ -33,7 +33,7 @@ function readConfig(name, callback) {
 function selectFromDb(query, callback) {
   wrapAsync(() => {
     console.log('(2) SQL query executed');
-    callback([ { name: 'Kiev' } , { name: 'Roma' } ]);
+    callback([ { name: 'Kiev' }, { name: 'Roma' } ]);
   });
 }
 

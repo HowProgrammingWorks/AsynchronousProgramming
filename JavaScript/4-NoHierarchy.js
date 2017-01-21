@@ -2,7 +2,7 @@
 
 // Back to order, callback hierarchy
 
-let data = {};
+const data = {};
 readConfig();
 
 // Emulate Asynchronous calls
@@ -24,7 +24,7 @@ function readConfig() {
 function selectFromDb(query, callback) {
   wrapAsync(() => {
     console.log('(2) SQL query executed');
-    data.cities = [ { name: 'Kiev' } , { name: 'Roma' } ];
+    data.cities = [ { name: 'Kiev' }, { name: 'Roma' } ];
     getHttpPage();
   });
 }

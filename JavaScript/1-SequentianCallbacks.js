@@ -20,7 +20,7 @@ function readConfig(name, callback) {
 function selectFromDb(query, callback) {
   setTimeout(() => {
     console.log('(2) SQL query executed');
-    callback([ { name: 'Kiev' } , { name: 'Roma' } ]);
+    callback([ { name: 'Kiev' }, { name: 'Roma' } ]);
   }, 1000);
 }
 
