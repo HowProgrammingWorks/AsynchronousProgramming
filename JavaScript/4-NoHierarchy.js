@@ -21,7 +21,7 @@ function readConfig() {
   });
 }
 
-function selectFromDb(query, callback) {
+function selectFromDb() {
   wrapAsync(() => {
     console.log('(2) SQL query executed');
     data.cities = [ { name: 'Kiev' }, { name: 'Roma' } ];
@@ -29,7 +29,7 @@ function selectFromDb(query, callback) {
   });
 }
 
-function getHttpPage(url, callback) {
+function getHttpPage() {
   wrapAsync(() => {
     console.log('(3) Page retrieved');
     data.html = '<html>Some archaic web here</html>';
@@ -37,7 +37,7 @@ function getHttpPage(url, callback) {
   });
 }
 
-function readFile(path, callback) {
+function readFile() {
   wrapAsync(() => {
     console.log('(4) Readme file loaded');
     data.readme = 'file content';

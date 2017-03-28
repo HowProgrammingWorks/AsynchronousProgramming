@@ -2,10 +2,11 @@
 
 // Sequentian calls and sequentian execution
 
-readConfig('myConfig', (err, data) => {});
+readConfig('myConfig', () => {});
 selectFromDb('select * from cities', () => {});
 getHttpPage('http://kpi.ua', () => {});
 readFile('README.md', () => {});
+console.log('end');
 
 // Pseudo-Asynchronous Functions
 // having just callbacks but working synchronously

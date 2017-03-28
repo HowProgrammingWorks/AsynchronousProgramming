@@ -4,10 +4,12 @@
 
 let count = 0;
 
+console.log('start');
 readConfig('myConfig', callbackCheck);
 selectFromDb('select * from cities', callbackCheck);
 getHttpPage('http://kpi.ua', callbackCheck);
 readFile('README.md', callbackCheck);
+console.log('end');
 
 function callbackCheck() {
   if (++count === 4) {
