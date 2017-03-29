@@ -11,6 +11,14 @@ function step(prev) {
       cur.forward();
     }
   };
+  cur.prev = prev;
+  cur.fn = null;
+  cur.args = null;
+  cur.do = (fn, ...args) => {
+    cur.fn = fn;
+    cur.args = args;
+    return step(cur);
+  };
   cur.forward = () => {
     console.log('Forward');
     if (cur.fn) cur.fn(cur.args, () => {
@@ -19,19 +27,12 @@ function step(prev) {
       else console.log('End at ' + cur.fn.name);
     });
   };
-  cur.prev = prev;
-  cur.fn = null;
-  cur.do = (fn, ...args) => {
-    cur.fn = fn;
-    cur.args = args;
-    return step(cur);
-  };
   return cur;
 }
 
 function chain() {
   console.log('Create chain');
-  return step();
+  return step(null);
 }
 
 // Emulate Asynchronous calls
@@ -70,10 +71,12 @@ function readFile(path, callback) {
   });
 }
 
-//
+// Usage:
 
-chain()
+const c1 = chain()
   .do(readConfig, 'myConfig')
   .do(selectFromDb, 'select * from cities')
   .do(getHttpPage, 'http://kpi.ua')
   .do(readFile, 'README.md');
+
+c1();
