@@ -2,10 +2,13 @@
 
 // Sequentian calls and sequentian execution
 
+console.log('start');
+
 readConfig('myConfig', () => {});
 selectFromDb('select * from cities', () => {});
 getHttpPage('http://kpi.ua', () => {});
 readFile('README.md', () => {});
+
 console.log('end');
 
 // Pseudo-Asynchronous Functions
