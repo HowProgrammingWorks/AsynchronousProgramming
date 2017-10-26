@@ -46,46 +46,12 @@ function readFile(path) {
 
 // Usage:
 
-/*
-
-Promise.resolve()
-  .then(readConfig.bind(null, 'myConfig'))
-  .then(selectFromDb.bind(null, 'select * from cities'))
-  .then(getHttpPage.bind(null, 'http://kpi.ua'))
-  .then(readFile.bind(null, 'README.md'))
-  .then(console.log.bind(null, 'Done'));
-
-*/
-
-Promise.resolve()
-  .then(readConfig.bind(null, 'myConfig'))
-  .then(() => Promise.all([
-    selectFromDb('select * from cities'),
-    getHttpPage('http://kpi.ua')
-  ]))
-  .then(readFile.bind(null, 'README.md'))
-  .then(console.log.bind(null, 'Done'));
-
-/*
-
-const doSeq = metasync.flow([
+Promise.all([
   readConfig('myConfig'),
   selectFromDb('select * from cities'),
   getHttpPage('http://kpi.ua'),
   readFile('README.md')
-]);
-
-const doComplex = metasync.flow([
-  readConfig('myConfig'),
-  [[
-    selectFromDb('select * from cities'),
-    getHttpPage('http://kpi.ua')
-  ]],
-  readFile('README.md')
-]);
-
-doComplex((err, data) => {
-  console.log('Done'));
+]).then((data) => {
+  console.log('Done');
+  console.dir({ data });
 });
-
-*/
