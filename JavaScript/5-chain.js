@@ -1,6 +1,6 @@
 'use strict';
 
-function step(prev) {
+function chain(prev = null) {
   console.log('Create element');
   const cur = () => {
     console.log('Reverse from ' + (cur.fn ? cur.fn.name : 'null'));
@@ -17,7 +17,7 @@ function step(prev) {
   cur.do = (fn, ...args) => {
     cur.fn = fn;
     cur.args = args;
-    return step(cur);
+    return chain(cur);
   };
   cur.forward = () => {
     console.log('Forward');
@@ -28,11 +28,6 @@ function step(prev) {
     });
   };
   return cur;
-}
-
-function chain() {
-  console.log('Create chain');
-  return step(null);
 }
 
 // Emulate Asynchronous calls
