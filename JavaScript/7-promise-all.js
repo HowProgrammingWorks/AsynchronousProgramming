@@ -9,36 +9,36 @@ function wrapAsync(callback) {
 // Asynchronous functions
 
 function readConfig(name) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(resolve => {
     wrapAsync(() => {
-      console.log('(1) config loaded');
+      console.log('(1) config loaded: ' + name);
       resolve({ name });
     });
   });
 }
 
-function selectFromDb(query) {
-  return new Promise(function(resolve, reject) {
+function doQuery(statement) {
+  return new Promise(resolve => {
     wrapAsync(() => {
-      console.log('(2) SQL query executed');
+      console.log('(2) SQL query executed: ' + statement);
       resolve([ { name: 'Kiev' }, { name: 'Roma' } ]);
     });
   });
 }
 
-function getHttpPage(url) {
-  return new Promise(function(resolve, reject) {
+function httpGet(url) {
+  return new Promise(resolve => {
     wrapAsync(() => {
-      console.log('(3) Page retrieved');
+      console.log('(3) Page retrieved: ' + url);
       resolve('<html>Some archaic web here</html>');
     });
   });
 }
 
 function readFile(path) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(resolve => {
     wrapAsync(() => {
-      console.log('(4) Readme file loaded');
+      console.log('(4) Readme file loaded: ' + path);
       resolve('file content');
     });
   });
@@ -48,8 +48,8 @@ function readFile(path) {
 
 Promise.all([
   readConfig('myConfig'),
-  selectFromDb('select * from cities'),
-  getHttpPage('http://kpi.ua'),
+  doQuery('select * from cities'),
+  httpGet('http://kpi.ua'),
   readFile('README.md')
 ]).then((data) => {
   console.log('Done');

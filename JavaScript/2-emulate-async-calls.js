@@ -7,8 +7,8 @@ let count = 0;
 console.log('start');
 
 readConfig('myConfig', callbackCheck);
-selectFromDb('select * from cities', callbackCheck);
-getHttpPage('http://kpi.ua', callbackCheck);
+doQuery('select * from cities', callbackCheck);
+httpGet('http://kpi.ua', callbackCheck);
 readFile('README.md', callbackCheck);
 
 console.log('end');
@@ -34,16 +34,16 @@ function readConfig(name, callback) {
   });
 }
 
-function selectFromDb(query, callback) {
+function doQuery(statement, callback) {
   wrapAsync(() => {
-    console.log('(2) SQL query executed');
+    console.log('(2) SQL query executed: ' + statement);
     callback([ { name: 'Kiev' }, { name: 'Roma' } ]);
   });
 }
 
-function getHttpPage(url, callback) {
+function httpGet(url, callback) {
   wrapAsync(() => {
-    console.log('(3) Page retrieved');
+    console.log('(3) Page retrieved: ' + url);
     callback('<html>Some archaic web here</html>');
   });
 }

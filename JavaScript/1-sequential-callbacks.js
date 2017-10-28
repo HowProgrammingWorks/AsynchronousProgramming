@@ -5,8 +5,8 @@
 console.log('start');
 
 readConfig('myConfig', () => {});
-selectFromDb('select * from cities', () => {});
-getHttpPage('http://kpi.ua', () => {});
+doQuery('select * from cities', () => {});
+httpGet('http://kpi.ua', () => {});
 readFile('README.md', () => {});
 
 console.log('end');
@@ -16,21 +16,21 @@ console.log('end');
 
 function readConfig(name, callback) {
   setTimeout(() => {
-    console.log('(1) config loaded');
+    console.log('(1) config loaded: ' + name);
     callback({ name });
   }, 1000);
 }
 
-function selectFromDb(query, callback) {
+function doQuery(statement, callback) {
   setTimeout(() => {
-    console.log('(2) SQL query executed');
+    console.log('(2) SQL query executed: ' + statement);
     callback([ { name: 'Kiev' }, { name: 'Roma' } ]);
   }, 1000);
 }
 
-function getHttpPage(url, callback) {
+function httpGet(url, callback) {
   setTimeout(() => {
-    console.log('(3) Page retrieved');
+    console.log('(3) Page retrieved: ' + url);
     callback('<html>Some archaic web here</html>');
   }, 1000);
 }

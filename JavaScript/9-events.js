@@ -7,8 +7,8 @@ console.log('start');
 const ee = new EventEmitter();
 
 readConfig('myConfig');
-ee.on('config', selectFromDb.bind(null, 'select * from cities'));
-ee.on('query', getHttpPage.bind(null, 'http://kpi.ua'));
+ee.on('config', doQuery.bind(null, 'select * from cities'));
+ee.on('query', httpGet.bind(null, 'http://kpi.ua'));
 ee.on('page', readFile.bind(null, 'README.md'));
 ee.on('done', () => console.log('done'));
 
@@ -29,23 +29,23 @@ function readConfig(name) {
   });
 }
 
-function selectFromDb(query) {
+function doQuery(statement) {
   wrapAsync(() => {
-    console.log('(2) SQL query executed');
+    console.log('(2) SQL query executed: ' + statement);
     ee.emit('query', [ { name: 'Kiev' }, { name: 'Roma' } ]);
   });
 }
 
-function getHttpPage(url) {
+function httpGet(url) {
   wrapAsync(() => {
-    console.log('(3) Page retrieved');
+    console.log('(3) Page retrieved: ' + url);
     ee.emit('page', '<html>Some archaic web here</html>');
   });
 }
 
 function readFile(path) {
   wrapAsync(() => {
-    console.log('(4) Readme file loaded');
+    console.log('(4) Readme file loaded: ' + path);
     ee.emit('done', 'file content');
   });
 }
