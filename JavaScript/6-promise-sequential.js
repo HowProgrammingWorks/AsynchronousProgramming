@@ -12,7 +12,7 @@ function readConfig(name) {
   return new Promise(function(resolve, reject) {
     wrapAsync(() => {
       console.log('(1) config loaded');
-      //reject(new Error('Fuck'));
+      //reject(new Error('Promise fails'));
       resolve({ name });
     });
   });
