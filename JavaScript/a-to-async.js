@@ -26,7 +26,7 @@ const af2 = asyncify(f2);
 const af3 = asyncify(f3);
 const af4 = asyncify(f4);
 
-af1('value', (e, data) => {
+af1('value2', (e, data) => {
   af2(data, (e, data) => {
     af3(data, (e, data) => {
       af4(data, (e, data) => {
