@@ -13,6 +13,7 @@ const f2 = par => par;
 const f3 = par => par;
 const f4 = par => par;
 
+console.log('Sync execution:');
 console.log(f4(f3(f2(f1('value')))));
 
 // Usage
@@ -22,6 +23,7 @@ const pf2 = promise(f2);
 const pf3 = promise(f3);
 const pf4 = promise(f4);
 
+console.log('Async execution:');
 Promise.resolve()
   .then(pf1.bind(null, 'value'))
   .then(pf2())

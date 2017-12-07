@@ -44,7 +44,7 @@ function readFile(path) {
   });
 }
 
-// Usage:
+// Usage
 
 Promise.all([
   readConfig('myConfig'),

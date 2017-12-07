@@ -6,6 +6,7 @@ readConfig('myConfig', () => {
   selectFromDb('select * from cities', () => {
     getHttpPage('http://kpi.ua', () => {
       readFile('README.md', () => {
+        console.log('All done!');
       });
     });
   });

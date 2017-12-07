@@ -45,7 +45,7 @@ function readFile(path) {
   });
 }
 
-// Usage:
+// Usage
 
 Promise.resolve()
   .then(readConfig.bind(null, 'myConfig'))

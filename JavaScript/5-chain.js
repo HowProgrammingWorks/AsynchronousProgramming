@@ -66,7 +66,7 @@ function readFile(path, callback) {
   });
 }
 
-// Usage:
+// Usage
 
 const c1 = chain()
   .do(readConfig, 'myConfig')

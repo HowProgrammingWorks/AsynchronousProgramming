@@ -42,5 +42,6 @@ function readFile() {
     console.log('(4) Readme file loaded');
     data.readme = 'file content';
     console.dir(data);
+    console.log('All done!');
   });
 }
