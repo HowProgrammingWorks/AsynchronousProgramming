@@ -2,10 +2,9 @@
 
 const async = require('async');
 
-const arr = [1, 2, 3, 4];
-const obj = { a: 1, b: 2, c: 3, d: 4 };
-
 console.log('Map array');
+
+const arr = [1, 2, 3, 4];
 
 async.map(
   arr,
@@ -19,6 +18,8 @@ async.map(
 );
 
 console.log('Map object');
+
+const obj = { a: 1, b: 2, c: 3, d: 4 };
 
 async.map(
   obj,
