@@ -2,48 +2,45 @@
 
 // Emulate Asynchronous calls
 
-function wrapAsync(callback) {
-  setTimeout(callback, Math.floor((Math.random() * 1000)));
-}
+const wrapAsync = (callback) => setTimeout(
+  callback, Math.floor((Math.random() * 1000))
+);
+
+const isWeekend = () => !(new Date().getDay() % 6);
 
 // Asynchronous functions
 
-function readConfig(name) {
-  return new Promise((resolve, reject) => {
-    wrapAsync(() => {
-      console.log('(1) config loaded');
-      resolve({ name });
-      // reject(new Error('Promise fails'));
-    });
+const readConfig = (name) => new Promise((resolve, reject) => {
+  wrapAsync(() => {
+    console.log('(1) config loaded');
+    if (!isWeekend()) resolve({ name });
+    else reject(new Error('Promises will resolve next working day'));
   });
-}
+});
 
-function doQuery(statement) {
-  return new Promise((resolve, reject) => {
-    wrapAsync(() => {
-      console.log('(2) SQL query executed: ' + statement);
-      resolve([ { name: 'Kiev' }, { name: 'Roma' } ]);
-    });
+const doQuery = (statement) => new Promise((resolve, reject) => {
+  wrapAsync(() => {
+    console.log('(2) SQL query executed: ' + statement);
+    if (!isWeekend()) resolve([{ name: 'Kiev' }, { name: 'Roma' }]);
+    else reject(new Error('Promises will resolve next working day'));
   });
-}
+});
 
-function httpGet(url) {
-  return new Promise((resolve, reject) => {
-    wrapAsync(() => {
-      console.log('(3) Page retrieved: ' + url);
-      resolve('<html>Some archaic web here</html>');
-    });
+const httpGet = (url) => new Promise((resolve, reject) => {
+  wrapAsync(() => {
+    console.log('(3) Page retrieved: ' + url);
+    if (!isWeekend()) resolve('<html>Some archaic web here</html>');
+    else reject(new Error('Promises will resolve next working day'));
   });
-}
+});
 
-function readFile(path) {
-  return new Promise((resolve, reject) => {
-    wrapAsync(() => {
-      console.log('(4) Readme file loaded: ' + path);
-      resolve('file content');
-    });
+const readFile = (path) => new Promise((resolve, reject) => {
+  wrapAsync(() => {
+    console.log('(4) Readme file loaded: ' + path);
+    if (!isWeekend()) resolve('file content');
+    else reject(new Error('Promises will resolve next working day'));
   });
-}
+});
 
 // Usage
 
