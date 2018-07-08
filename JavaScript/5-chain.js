@@ -21,9 +21,10 @@ function chain(prev = null) {
   };
   cur.forward = () => {
     console.log('Forward');
-    if (cur.fn) cur.fn(cur.args, () => {
+    if (cur.fn) cur.fn(cur.args, (err, data) => {
       console.log('Callback from ' + cur.fn.name);
-      if (cur.next) cur.next.forward();
+      console.dir({ data });
+      if (!err && cur.next) cur.next.forward();
       else console.log('End at ' + cur.fn.name);
     });
   };
@@ -41,28 +42,28 @@ function wrapAsync(callback) {
 function readConfig(name, callback) {
   wrapAsync(() => {
     console.log('(1) config loaded');
-    callback({ name });
+    callback(null, { name });
   });
 }
 
 function selectFromDb(query, callback) {
   wrapAsync(() => {
     console.log('(2) SQL query executed');
-    callback([ { name: 'Kiev' }, { name: 'Roma' } ]);
+    callback(null, [ { name: 'Kiev' }, { name: 'Roma' } ]);
   });
 }
 
 function getHttpPage(url, callback) {
   wrapAsync(() => {
     console.log('(3) Page retrieved');
-    callback('<html>Some archaic web here</html>');
+    callback(null, '<html>Some archaic web here</html>');
   });
 }
 
 function readFile(path, callback) {
   wrapAsync(() => {
     console.log('(4) Readme file loaded');
-    callback('file content');
+    callback(null, 'file content');
   });
 }
 
