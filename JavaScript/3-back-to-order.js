@@ -2,30 +2,30 @@
 
 // Back to order, callback hierarchy
 
-// Emulate Asynchronous calls
+// Emulate asynchronous calls
 
-const wrapAsync = (callback) => setTimeout(
-  callback, Math.floor((Math.random() * 1000))
+const wrapAsync = fn => (...args) => setTimeout(
+  () => fn(...args), Math.floor((Math.random() * 1000))
 );
 
 // Asynchronous functions
 
-const readConfig = (name, callback) => wrapAsync(() => {
+const readConfig = wrapAsync((name, callback) => {
   console.log('(1) config loaded');
   callback(null, { name });
 });
 
-const selectFromDb = (query, callback) => wrapAsync(() => {
+const selectFromDb = wrapAsync((query, callback) => {
   console.log('(2) SQL query executed');
   callback(null, [{ name: 'Kiev' }, { name: 'Roma' }]);
 });
 
-const getHttpPage = (url, callback) => wrapAsync(() => {
+const getHttpPage = wrapAsync((url, callback) => {
   console.log('(3) Page retrieved');
   callback(null, '<html>Some archaic web here</html>');
 });
 
-const readFile = (path, callback) => wrapAsync(() => {
+const readFile = wrapAsync((path, callback) => {
   console.log('(4) Readme file loaded');
   callback(null, 'file content');
 });

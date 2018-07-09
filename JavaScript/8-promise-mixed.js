@@ -1,48 +1,40 @@
 'use strict';
 
-// Emulate Asynchronous calls
+// Emulate asynchronous calls
 
-function wrapAsync(callback) {
-  setTimeout(callback, Math.floor((Math.random() * 1000)));
-}
+const wrapAsync = (callback) => setTimeout(
+  callback, Math.floor((Math.random() * 1000))
+);
 
 // Asynchronous functions
 
-function readConfig(name) {
-  return new Promise(resolve => {
-    wrapAsync(() => {
-      console.log('(1) config loaded: ' + name);
-      resolve({ name });
-    });
+const readConfig = (name) => new Promise(resolve => {
+  wrapAsync(() => {
+    console.log('(1) config loaded: ' + name);
+    resolve({ name });
   });
-}
+});
 
-function doQuery(statement) {
-  return new Promise(resolve => {
-    wrapAsync(() => {
-      console.log('(2) SQL query executed: ' + statement);
-      resolve([ { name: 'Kiev' }, { name: 'Roma' } ]);
-    });
+const doQuery = (statement) => new Promise(resolve => {
+  wrapAsync(() => {
+    console.log('(2) SQL query executed: ' + statement);
+    resolve([ { name: 'Kiev' }, { name: 'Roma' } ]);
   });
-}
+});
 
-function httpGet(url) {
-  return new Promise(resolve => {
-    wrapAsync(() => {
-      console.log('(3) Page retrieved: ' + url);
-      resolve('<html>Some archaic web here</html>');
-    });
+const httpGet = (url) => new Promise(resolve => {
+  wrapAsync(() => {
+    console.log('(3) Page retrieved: ' + url);
+    resolve('<html>Some archaic web here</html>');
   });
-}
+});
 
-function readFile(path) {
-  return new Promise(resolve => {
-    wrapAsync(() => {
-      console.log('(4) Readme file loaded: ' + path);
-      resolve('file content');
-    });
+const readFile = (path) => new Promise(resolve => {
+  wrapAsync(() => {
+    console.log('(4) Readme file loaded: ' + path);
+    resolve('file content');
   });
-}
+});
 
 // Usage
 

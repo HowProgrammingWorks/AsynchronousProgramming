@@ -1,6 +1,6 @@
 'use strict';
 
-// Emulate Asynchronous calls
+// Emulate asynchronous calls
 
 const wrapAsync = (callback) => setTimeout(
   callback, Math.floor((Math.random() * 1000))

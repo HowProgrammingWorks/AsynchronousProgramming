@@ -1,6 +1,6 @@
 'use strict';
 
-function chain(prev = null) {
+const chain = (prev = null) => {
   console.log('Create element');
   const cur = () => {
     console.log('Reverse from ' + (cur.fn ? cur.fn.name : 'null'));
@@ -29,50 +29,42 @@ function chain(prev = null) {
     });
   };
   return cur;
-}
+};
 
-// Emulate Asynchronous calls
+// Emulate asynchronous calls
 
-function wrapAsync(callback) {
-  setTimeout(callback, Math.floor((Math.random() * 1000)));
-}
+const wrapAsync = fn => (...args) => setTimeout(
+  () => fn(...args), Math.floor((Math.random() * 1000))
+);
 
 // Asynchronous functions
 
-function readConfig(name, callback) {
-  wrapAsync(() => {
-    console.log('(1) config loaded');
-    callback(null, { name });
-  });
-}
+const readConfig = wrapAsync((name, callback) => {
+  console.log('(1) config loaded');
+  callback(null, { name });
+});
 
-function selectFromDb(query, callback) {
-  wrapAsync(() => {
-    console.log('(2) SQL query executed');
-    callback(null, [ { name: 'Kiev' }, { name: 'Roma' } ]);
-  });
-}
+const selectFromDb = wrapAsync((query, callback) => {
+  console.log('(2) SQL query executed');
+  callback(null, [{ name: 'Kiev' }, { name: 'Roma' } ]);
+});
 
-function getHttpPage(url, callback) {
-  wrapAsync(() => {
-    console.log('(3) Page retrieved');
-    callback(null, '<html>Some archaic web here</html>');
-  });
-}
+const getHttpPage = wrapAsync((url, callback) => {
+  console.log('(3) Page retrieved');
+  callback(null, '<html>Some archaic web here</html>');
+});
 
-function readFile(path, callback) {
-  wrapAsync(() => {
-    console.log('(4) Readme file loaded');
-    callback(null, 'file content');
-  });
-}
+const readFile = wrapAsync((path, callback) => {
+  console.log('(4) Readme file loaded');
+  callback(null, 'file content');
+});
 
 // Usage
 
-const c1 = chain()
+const startChain = chain()
   .do(readConfig, 'myConfig')
   .do(selectFromDb, 'select * from cities')
   .do(getHttpPage, 'http://kpi.ua')
   .do(readFile, 'README.md');
 
-c1();
+startChain();
