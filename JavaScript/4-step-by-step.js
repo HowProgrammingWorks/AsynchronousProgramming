@@ -1,6 +1,6 @@
 'use strict';
 
-// Back to order, callback hierarchy
+// Back to order
 // Use global data and decentralized control flow (bad practices)
 
 const data = {};
