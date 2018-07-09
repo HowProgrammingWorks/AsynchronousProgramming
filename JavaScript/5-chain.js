@@ -1,5 +1,7 @@
 'use strict';
 
+// Use list and chaining syntax to build sequence
+
 const chain = (prev = null) => {
   console.log('Create element');
   const cur = () => {

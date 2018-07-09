@@ -1,6 +1,6 @@
 'use strict';
 
-// Back to order, callback hierarchy
+// Back to order, enclosed callbacks
 
 // Emulate asynchronous calls
 
