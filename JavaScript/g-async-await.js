@@ -8,25 +8,25 @@ const pause = () => new Promise((resolve) =>
 
 // Asynchronous functions
 
-const readConfig = async (name) => {
+const readConfig = async name => {
   await pause();
   console.log('(1) config loaded');
   return { name };
 }
 
-const doQuery = async (statement) => {
+const doQuery = async statement => {
   await pause();
   console.log('(2) SQL query executed: ' + statement);
   return [{ name: 'Kiev' }, { name: 'Roma' }];
 };
 
-const httpGet = async (url) => {
+const httpGet = async url => {
   await pause();
   console.log('(3) Page retrieved: ' + url);
   return '<html>Some archaic web here</html>';
 };
 
-const readFile = async (path) => {
+const readFile = async path => {
   await pause();
   console.log('(4) Readme file loaded: ' + path);
   return 'file content';

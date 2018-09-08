@@ -2,7 +2,7 @@
 
 // Emulate asynchronous calls
 
-const wrapAsync = (callback) => setTimeout(
+const wrapAsync = callback => setTimeout(
   callback, Math.floor((Math.random() * 1000))
 );
 
@@ -10,7 +10,7 @@ const isWeekend = () => !(new Date().getDay() % 6);
 
 // Asynchronous functions
 
-const readConfig = (name) => new Promise((resolve, reject) => {
+const readConfig = name => new Promise((resolve, reject) => {
   wrapAsync(() => {
     console.log('(1) config loaded');
     if (!isWeekend()) resolve({ name });
@@ -18,7 +18,7 @@ const readConfig = (name) => new Promise((resolve, reject) => {
   });
 });
 
-const doQuery = (statement) => new Promise((resolve, reject) => {
+const doQuery = statement => new Promise((resolve, reject) => {
   wrapAsync(() => {
     console.log('(2) SQL query executed: ' + statement);
     if (!isWeekend()) resolve([{ name: 'Kiev' }, { name: 'Roma' }]);
@@ -26,7 +26,7 @@ const doQuery = (statement) => new Promise((resolve, reject) => {
   });
 });
 
-const httpGet = (url) => new Promise((resolve, reject) => {
+const httpGet = url => new Promise((resolve, reject) => {
   wrapAsync(() => {
     console.log('(3) Page retrieved: ' + url);
     if (!isWeekend()) resolve('<html>Some archaic web here</html>');
@@ -34,7 +34,7 @@ const httpGet = (url) => new Promise((resolve, reject) => {
   });
 });
 
-const readFile = (path) => new Promise((resolve, reject) => {
+const readFile = path => new Promise((resolve, reject) => {
   wrapAsync(() => {
     console.log('(4) Readme file loaded: ' + path);
     if (!isWeekend()) resolve('file content');
@@ -48,10 +48,10 @@ Promise.resolve()
   .then(readConfig.bind(null, 'myConfig'))
   .then(doQuery.bind(null, 'select * from cities'))
   .then(httpGet.bind(null, 'http://kpi.ua'))
-  .catch((err) => console.log('Reject reason (1): ' + err.message))
+  .catch(err => console.log('Reject reason (1): ' + err.message))
   .then(readFile.bind(null, 'README.md'))
-  .catch((err) => console.log('Reject reason (2): ' + err.message))
-  .then((data) => {
+  .catch(err => console.log('Reject reason (2): ' + err.message))
+  .then(data => {
     console.log('Done');
     console.dir({ data });
   });

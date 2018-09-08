@@ -11,22 +11,22 @@ const wrapAsync = fn => (...args) => setTimeout(
 
 // Asynchronous functions
 
-const readConfig = wrapAsync((name) => {
+const readConfig = wrapAsync(name => {
   console.log('(1) config loaded');
   ee.emit('config', { name });
 });
 
-const doQuery = wrapAsync((statement) => {
+const doQuery = wrapAsync(statement => {
   console.log('(2) SQL query executed: ' + statement);
   ee.emit('query', [ { name: 'Kiev' }, { name: 'Roma' } ]);
 });
 
-const httpGet = wrapAsync((url) => {
+const httpGet = wrapAsync(url => {
   console.log('(3) Page retrieved: ' + url);
   ee.emit('page', '<html>Some archaic web here</html>');
 });
 
-const readFile = wrapAsync((path) => {
+const readFile = wrapAsync(path => {
   console.log('(4) Readme file loaded: ' + path);
   ee.emit('done', 'file content');
 });
