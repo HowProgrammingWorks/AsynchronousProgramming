@@ -3,10 +3,12 @@
 // Run and see random order
 // Use global counter to detect finish (bad practice)
 
-let count = 0;
-
-const callbackCheck = () => {
-  if (++count === 4) console.log('All done!');
+const callbackCounter = (count, callback) => {
+  let counter = 0;
+  const done = () => {
+    if (++counter === count) callback();
+  };
+  return done;
 };
 
 // Emulate asynchronous calls
@@ -39,9 +41,13 @@ const readFile = wrapAsync((path, callback) => {
 
 console.log('start');
 
-readConfig('myConfig', callbackCheck);
-doQuery('select * from cities', callbackCheck);
-httpGet('http://kpi.ua', callbackCheck);
-readFile('README.md', callbackCheck);
+const callback = callbackCounter(4, () => {
+  console.log('All done!');
+});
+
+readConfig('myConfig', callback);
+doQuery('select * from cities', callback);
+httpGet('http://kpi.ua', callback);
+readFile('README.md', callback);
 
 console.log('end');
