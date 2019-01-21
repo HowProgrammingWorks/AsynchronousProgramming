@@ -1,6 +1,6 @@
 Asynchronous Programming
 ===============
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/z8Hg6zgi3yQ/0.jpg)](https://www.youtube.com/watch?v=z8Hg6zgi3yQ)
 - callback
   - global or context counters, collections and flags
   - utilities (async.js and analogues)
