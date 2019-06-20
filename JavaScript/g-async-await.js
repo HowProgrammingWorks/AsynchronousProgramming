@@ -12,7 +12,7 @@ const readConfig = async name => {
   await pause();
   console.log('(1) config loaded');
   return { name };
-}
+};
 
 const doQuery = async statement => {
   await pause();
