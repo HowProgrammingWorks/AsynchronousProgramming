@@ -1,10 +1,10 @@
 {
   "name": "async-examples",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
   "dependencies": {
-    "async": "^2.6.1"
+    "async": "^3.1.0"
   },
   "license": "MIT"
 }
