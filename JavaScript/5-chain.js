@@ -23,7 +23,7 @@ const chain = (prev = null) => {
   };
   cur.forward = () => {
     console.log('Forward');
-    if (cur.fn) cur.fn(cur.args, (err, data) => {
+    if (cur.fn) cur.fn(...cur.args, (err, data) => {
       console.log('Callback from ' + cur.fn.name);
       console.dir({ data });
       if (!err && cur.next) cur.next.forward();
