@@ -2,9 +2,9 @@
 
 // Sync function to async
 
-const last = arr => arr[arr.length - 1];
+const last = (arr) => arr[arr.length - 1];
 
-const asyncify = fn => (...args) => {
+const asyncify = (fn) => (...args) => {
   const callback = last(args);
   args.pop();
   process.nextTick(() => {
@@ -14,10 +14,10 @@ const asyncify = fn => (...args) => {
 
 // Functions
 
-const f1 = par => par;
-const f2 = par => par;
-const f3 = par => par;
-const f4 = par => par;
+const f1 = (par) => par;
+const f2 = (par) => par;
+const f3 = (par) => par;
+const f4 = (par) => par;
 
 // Usage
 

@@ -2,7 +2,7 @@
 
 // Async function to Promise
 
-const promisify = fn => (...args) => (
+const promisify = (fn) => (...args) => (
   new Promise((resolve, reject) => (
     fn(...args, (err, data) => (
       err ? reject(err) : resolve(data)
@@ -21,5 +21,5 @@ f1('value', (err, par) => (
 const pf1 = promisify(f1);
 
 pf1('value')
-  .then(data => console.log('Promise execution:', data))
-  .catch(err => console.error(err));
+  .then((data) => console.log('Promise execution:', data))
+  .catch((err) => console.error(err));
