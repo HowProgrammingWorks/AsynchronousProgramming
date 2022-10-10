@@ -1,6 +1,6 @@
 'use strict';
 
-const { EventEmitter } = require('events');
+const { EventEmitter } = require('node:events');
 const ee = new EventEmitter();
 
 // Emulate asynchronous calls
