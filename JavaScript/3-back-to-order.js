@@ -5,7 +5,7 @@
 // Emulate asynchronous calls
 
 const wrapAsync = (fn) => (...args) => setTimeout(
-  () => fn(...args), Math.floor(Math.random() * 1000)
+  fn, Math.floor(Math.random() * 1000), ...args
 );
 
 // Asynchronous functions

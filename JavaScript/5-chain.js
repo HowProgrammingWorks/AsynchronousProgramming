@@ -36,7 +36,7 @@ const chain = (prev = null) => {
 // Emulate asynchronous calls
 
 const wrapAsync = (fn) => (...args) => setTimeout(
-  () => fn(...args), Math.floor(Math.random() * 1000)
+  fn, Math.floor(Math.random() * 1000), ...args
 );
 
 // Asynchronous functions
@@ -48,7 +48,7 @@ const readConfig = wrapAsync((name, callback) => {
 
 const selectFromDb = wrapAsync((query, callback) => {
   console.log('(2) SQL query executed');
-  callback(null, [{ name: 'Kiev' }, { name: 'Roma' } ]);
+  callback(null, [{ name: 'Kiev' }, { name: 'Roma' }]);
 });
 
 const getHttpPage = wrapAsync((url, callback) => {

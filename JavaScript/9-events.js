@@ -6,7 +6,7 @@ const ee = new EventEmitter();
 // Emulate asynchronous calls
 
 const wrapAsync = (fn) => (...args) => setTimeout(
-  () => fn(...args), Math.floor(Math.random() * 1000)
+  fn, Math.floor(Math.random() * 1000), ...args
 );
 
 // Asynchronous functions
@@ -18,7 +18,7 @@ const readConfig = wrapAsync((name) => {
 
 const doQuery = wrapAsync((statement) => {
   console.log('(2) SQL query executed: ' + statement);
-  ee.emit('query', [ { name: 'Kiev' }, { name: 'Roma' } ]);
+  ee.emit('query', [{ name: 'Kiev' }, { name: 'Roma' }]);
 });
 
 const httpGet = wrapAsync((url) => {
