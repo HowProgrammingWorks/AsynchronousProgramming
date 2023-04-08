@@ -35,31 +35,43 @@ const chain = (prev = null) => {
 
 // Emulate asynchronous calls
 
-const wrapAsync = (fn) => (...args) => setTimeout(
-  () => fn(...args), Math.floor(Math.random() * 1000)
-);
+const wrapAsync = (fn) => {
+  const delayedFn = (...args) => (
+    setTimeout(fn, Math.floor(Math.random() * 1000), ...args)
+  );
+  Object.defineProperty(delayedFn, 'name', {
+    value: fn.name
+  });
+  return delayedFn;
+};
 
 // Asynchronous functions
-
-const readConfig = wrapAsync((name, callback) => {
+const readConfigCb = (name, callback) => {
   console.log('(1) config loaded');
   callback(null, { name });
-});
+};
 
-const selectFromDb = wrapAsync((query, callback) => {
+const selectFromDbCb = (query, callback) => {
   console.log('(2) SQL query executed');
-  callback(null, [{ name: 'Kiev' }, { name: 'Roma' } ]);
-});
+  callback(null, [{ name: 'Kiev' }, { name: 'Roma' }]);
+};
 
-const getHttpPage = wrapAsync((url, callback) => {
+const getHttpPageCb = (url, callback) => {
   console.log('(3) Page retrieved');
   callback(null, '<html>Some archaic web here</html>');
-});
+};
 
-const readFile = wrapAsync((path, callback) => {
+const readFileCb = (path, callback) => {
   console.log('(4) Readme file loaded');
   callback(null, 'file content');
-});
+};
+
+const [readConfig, selectFromDb, getHttpPage, readFile] = [
+  readConfigCb,
+  selectFromDbCb,
+  getHttpPageCb,
+  readFileCb,
+].map(wrapAsync);
 
 // Usage
 
