@@ -5,9 +5,7 @@
 const chain = () => {
   const callbacks = [];
 
-  const nextCallback = () => {
-    return callbacks.shift();
-  };
+  const nextCallback = () => callbacks.shift();
 
   const forward = (err, data) => {
     if (err) return console.log({ err });
@@ -23,13 +21,12 @@ const chain = () => {
   };
 
   forward.do = (func, name) => {
-      callbacks.push([func, name]);
-      return forward;
+    callbacks.push([func, name]);
+    return forward;
   };
   
   return forward;
 };
-
 
 // Emulate asynchronous calls
 
