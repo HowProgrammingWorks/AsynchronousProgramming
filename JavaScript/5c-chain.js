@@ -35,7 +35,12 @@ const chain = () => {
     for (let i = len - 1; i >= 0; i--) {
       const [fn, args] = stack.pop();
 
-      result = fn.bind(null, ...args, result);
+      const prev = result;
+
+      result = (err, data) => {
+        if (err) return console.error({ err });
+        fn(...args, prev);
+      };
     }
 
     result();
