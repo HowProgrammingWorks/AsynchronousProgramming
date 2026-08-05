@@ -17,17 +17,17 @@ const readConfig = wrapAsync((name) => {
 });
 
 const doQuery = wrapAsync((statement) => {
-  console.log('(2) SQL query executed: ' + statement);
+  console.log(`(2) SQL query executed: ${statement}`);
   ee.emit('query', [ { name: 'Kiev' }, { name: 'Roma' } ]);
 });
 
 const httpGet = wrapAsync((url) => {
-  console.log('(3) Page retrieved: ' + url);
+  console.log(`(3) Page retrieved: ${url}`);
   ee.emit('page', '<html>Some archaic web here</html>');
 });
 
 const readFile = wrapAsync((path) => {
-  console.log('(4) Readme file loaded: ' + path);
+  console.log(`(4) Readme file loaded: ${path}`);
   ee.emit('done', 'file content');
 });
 

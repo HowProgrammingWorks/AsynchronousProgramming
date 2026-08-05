@@ -25,12 +25,12 @@ const readConfig = wrapAsync((name, callback) => {
 });
 
 const doQuery = wrapAsync((statement, callback) => {
-  console.log('(2) SQL query executed: ' + statement);
+  console.log(`(2) SQL query executed: ${statement}`);
   callback(null, [{ name: 'Kiev' }, { name: 'Roma' }]);
 });
 
 const httpGet = wrapAsync((url, callback) => {
-  console.log('(3) Page retrieved: ' + url);
+  console.log(`(3) Page retrieved: ${url}`);
   callback(null, '<html>Some archaic web here</html>');
 });
 

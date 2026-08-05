@@ -5,7 +5,7 @@
 const chain = (prev = null) => {
   console.log('Create element');
   const cur = () => {
-    console.log('Reverse from ' + (cur.fn ? cur.fn.name : 'null'));
+    console.log(`Reverse from ${cur.fn ? cur.fn.name : 'null'}`);
     if (cur.prev) {
       cur.prev.next = cur;
       cur.prev();
@@ -24,10 +24,10 @@ const chain = (prev = null) => {
   cur.forward = () => {
     console.log('Forward');
     if (cur.fn) cur.fn(...cur.args, (err, data) => {
-      console.log('Callback from ' + cur.fn.name);
+      console.log(`Callback from ${cur.fn.name}`);
       console.dir({ data });
       if (!err && cur.next) cur.next.forward();
-      else console.log('End at ' + cur.fn.name);
+      else console.log(`End at ${cur.fn.name}`);
     });
   };
   return cur;
